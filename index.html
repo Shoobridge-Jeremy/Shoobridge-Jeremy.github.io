@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jeremy Shoobridge Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+    }
+    .bebas {
+      font-family: 'Bebas Neue', cursive;
+    }
+
+    @keyframes blobFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-30px); }
+    }
+
+    .animate-blob {
+      animation: blobFloat 12s ease-in-out infinite;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-section {
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    /* Hide scrollbar for WebKit (Chrome, Safari) */
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge, and Firefox */
+    .scrollbar-hide {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;     /* Firefox */
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        clip-path: inset(100% 100% 0 0);
+      } to {
+        opacity: 1;
+        clip-path: inser(0 0 0 0);
+      }
+    }
+
+    .animateOnScroll {
+      animation: appear linear;
+      animation-timeline: view();
+      animation-range: entry 0% cover 40%;
+    }
+
+     .blurred-edges {
+      mask-image: radial-gradient(ellipse at center, black 2%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse at center, black 2%, transparent 100%);
+      mask-size: 80% 80%;
+      -webkit-mask-size: 100% 100%;
+      mask-repeat: no-repeat;
+      -webkit-mask-repeat: no-repeat;
+  }
+
+  
+  </style>
+</head>
+
+<body id="page" class="relative bg-zinc-900 text-white overflow-hidden">
+
+  <!-- Background Blobs -->
+  <div class="absolute inset-0 -z-10">
+    <div id="blob1" class="absolute w-[600px] h-[600px] border-2 border-gray-200 opacity-20 rounded-full transition-all duration-[1400ms] ease-in-out z-[-10]"></div>
+    <div id="blob2" class="absolute w-[400px] h-[400px] bg-gray-200 opacity-20 rounded-full transition-all duration-[600ms] ease-in-out z-[-10]"></div>
+    <div id="blob3" class="absolute w-[200px] h-[200px] border-8 border-gray-200 opacity-20 rounded-full transition-all duration-[1000ms] ease-in-out z-[-10]"></div>
+  </div>
+
+    <!-- Mouse Circle -->
+   <div id="mouseCircle" class="transition absolute duration-[0.5s] scale-100 z-[50] w-12 h-12 border-2 border-white rounded-full pointer-events-none"></div>
+
+  <!-- Menu Button -->
+  <button id="menuToggle" class="fixed top-6 right-6  w-[42px] h-[42px] text-white text-3xl z-50 transition-transform hover:scale-130 duration-500 hoverEffect">
+    <span class=" material-symbols-outlined text-[42px]">apps</span>
+  </button>
+
+  <!-- Fullscreen Menu Overlay -->
+<div id="menuOverlay" class="fixed inset-0 bg-zinc-950/90 backdrop-blur-md flex flex-col items-center justify-center text-4xl z-40 opacity-0 pointer-events-none transition-all duration-500">
+  
+  <a onclick="navigateTo('home')" id="menu-home" class="hoverEffect group flex my-[10px] text-stone-200 hover:my-[40px] hover:scale-[125%] transition-all duration-500 ease-in-out transform">
+    <p class="text-lg sm:text-xl md:text-xl montserrat mr-2">01</p>
+    <h1 class="relative uppercase text-5xl sm:text-6xl md:text-7xl lg:text-8xl bebas
+      after:content-[''] after:absolute after:left-0 after:-bottom-2 after:h-[2px] after:w-0 after:bg-white
+      group-hover:after:w-full after:transition-all after:duration-500">
+      Home
+    </h1>
+  </a>
+
+  <a onclick="navigateTo('projects')" id="menu-projects" class="hoverEffect group flex my-[10px] text-stone-200 hover:my-[40px] hover:scale-[125%] transition-all duration-500 ease-in-out transform">
+    <p class="text-lg sm:text-xl md:text-xl montserrat mr-2 ">02</p>
+    <h1 class=" relative uppercase text-5xl sm:text-6xl md:text-7xl lg:text-8xl bebas
+      after:content-[''] after:absolute after:left-0 after:-bottom-2 after:h-[2px] after:w-0 after:bg-white
+      group-hover:after:w-full after:transition-all after:duration-500">
+      Projects
+    </h1>
+  </a>
+
+  <a onclick="navigateTo('about')" id="menu-about" class="hoverEffect group flex my-[10px] text-stone-200 hover:my-[40px] hover:scale-[125%] transition-all duration-500 ease-in-out transform">
+    <p class="text-lg sm:text-xl md:text-xl montserrat mr-2">03</p>
+    <h1 class="relative uppercase text-5xl sm:text-6xl md:text-7xl lg:text-8xl bebas
+      after:content-[''] after:absolute after:left-0 after:-bottom-2 after:h-[2px] after:w-0 after:bg-white
+      group-hover:after:w-full after:transition-all after:duration-500">
+      About
+    </h1>
+  </a>
+
+  <a onclick="navigateTo('contact')" id="menu-contact" class="hoverEffect group flex my-[10px] text-stone-200 hover:my-[40px] hover:scale-[125%] transition-all duration-500 ease-in-out transform">
+    <p class="text-lg sm:text-xl md:text-xl montserrat mr-2">04</p>
+    <h1 class="relative uppercase text-5xl sm:text-6xl md:text-7xl lg:text-8xl bebas
+      after:content-[''] after:absolute after:left-0 after:-bottom-2 after:h-[2px] after:w-0 after:bg-white
+      group-hover:after:w-full after:transition-all after:duration-500">
+      Contacts
+    </h1>
+  </a>
+
+</div>
+
+
+
+
+
+  <!-- Main Content Wrapper -->
+  <main class="transition-opacity duration-300">
+
+    <!-- Section Template -->
+    <section id="home" class="section fade-section min-h-screen flex flex-col items-center justify-center text-center px-6">
+      <div class="flex">
+      <h1 class="text-4xl md:text-6xl bebas fade-in mb-4">Hey, I'm </h1>
+       <a onclick="navigateTo('about')" class="hoverEffect text-orange-600 hover:underline text-4xl md:text-6xl bebas fade-in mb-4 ml-[1rem]">Jeremy Shoobridge</a>
+       </div>
+      
+      <p class="text-md md:text-xl text-zinc-300 fade-in mb-4" style="animation-delay: 0.2s;">Media & Interaction Design Student</p>
+      <p class="text-zinc-500 text-md fade-in" style="animation-delay: 0.4s;">Osnabrueck, Germany</p>
+    </section>
+
+    <section id="projects" class="section fade-section min-h-screen hidden flex items-center justify-center px-6 text-center fade-in">
+      <div class="flex flex-col md:flex-row items-center justify-center max-w-6xl w-full ">
+        
+        <!-- Image Preview -->
+        <div class=" min-h-[35vh] w-1/2 flex justify-center fade-in">
+          <div class="w-full max-w-md aspect-video bg-zinc-800 rounded-xl overflow-hidden shadow-lg transition-all duration-500">
+            <img id="projectPreview" src="/Assets/posterDesignPreview.jpg" 
+                alt="Project preview" 
+                class="w-full h-full object-cover transition-opacity duration-300 opacity-70 hover:opacity-100 fade-in blurred-edges" />
+          </div>
+        </div>
+
+        <!-- Project List -->
+        <div class="w-full md:w-1/2 flex flex-col gap-[2.5vh] text-left fade-in">
+
+          <div onclick="navigateTo('project01')" style="animation-delay: 0.2s;" class="fade-in content-center min-h-[10vh] group cursor-pointer bg-zinc-800 p-6 rounded-xl transition hoverEffect relative overflow-hidden border-2 hover:border-gray-200 border-zinc-800 duration-800 " onmouseenter="setPreview('/Assets/posterDesignPreview.jpg')">
+            <div class=" flex items-center gap-3 transition-transform duration-300 group-hover:translate-x-4 ">
+              <div>
+                <h3 class="text-2xl font-bold mb-1 uppercase" >Poster Design</h3>
+                <p class="text-zinc-400 ">A poster and print design project with a strong focus on layout and the fundamental laws of design.</p>
+              </div>
+            </div>
+          </div>
+
+          <div onclick="navigateTo('projects')" style="animation-delay: 0.6s;" class=" fade-in content-center min-h-[10vh] group cursor-pointer bg-zinc-900 p-6 rounded-xl transition hoverEffect relative overflow-hidden border-2 hover:border-zinc-700 border-zinc-700 duration-800" onmouseenter="setPreview('assets/askABallPreview.jpg')">
+            <div class="flex items-center gap-3 transition-transform duration-300 group-hover:translate-x-4">
+              <div>
+                <h3 class="text-2xl font-bold mb-1 text-zinc-400">AskABall</h3>
+                <p class="text-zinc-600">An AI powered ball that helps you in Group situtaions to build bonds and get to know eachother</p>
+              </div>
+            </div>
+          </div>
+
+          <div onclick="navigateTo('projects')" style="animation-delay: 0.6s;" class="fade-in content-center min-h-[10vh] group cursor-pointer bg-zinc-900 p-6 rounded-xl transition hoverEffect relative overflow-hidden border-2 hover:border-zinc-700 border-zinc-700 duration-800" onmouseenter="setPreview('assets/garnGoghPreview.jpg')">
+            <div class="flex items-center gap-3 transition-transform duration-300 group-hover:translate-x-4">
+              <div>
+                <h3 class="text-2xl font-bold mb-1 text-zinc-400">GarnGogh</h3>
+                <p class="text-zinc-600">Intaractive Room instalation for the Visiodrom in Wuppertal that allowed people to tak home their own artwork!</p>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+    </section>
+
+    
+    <!--Project01-->
+    <section id="project01" class="section fade-section h-[100vh] w-[80vw] relative hidden flex flex-col items-center justify-center px-6 text-center max-w-3xl mx-auto overflow-visible scrollbar-hide scroll-smooth pb-[10vh]">
+      <section class=" text-white min-h-screen  space-y-12 flex flex-col items-center w-[100vw] px-[10vw] pb-12 overflow-scroll scrollbar-hide scroll-smooth ">
+
+        <!-- Top Image -->
+        <img src="/Assets/posterDesignPreview.jpg" alt="Top Visual" 
+            class="w-[80vw] h-[40vh] object-cover rounded-b-3xl pt-0 fade-in" />
+
+        <div class=" flex border-b-2 w-full pb-6">
+					<h1 class="text-5xl font-bold text-left uppercase w-full  fade-in">Poster Design</h1>
+					<a href="/Assets/PosterDesign03.pdf" class="m-auto cursor-none hoverEffect p-2 rounded-3xl border-2 border-transparent  hover:border-orange-600  fade-in transition duration-500 hover:text-orange-600" download>
+						<i class='bx bx-download bx-md '></i>
+					</a>
+				</div>
+            
+        <!-- 2x2 Grid of Headline + Text -->  
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 w-[80vw] h-[40vh] text-left py-6 fade-in">
+          <div class="">
+            <h3 class="text-xl font-bold mb-2 ">Category</h3>
+            <p class="text-zinc-400">Print Design / Laws of Design</p>
+          </div>
+          <div class="row-span-2 ">
+            <p class="text-zinc-400">
+            This project was completed during a university semester and focused on print design, layout, and core design principles. Each piece was developed in response to specific tasks assigned throughout the course. I particularly enjoyed this project because it taught me how to approach a design concept thoughtfully and communicate ideas effectively through visual design.</p>
+          </div>
+          <div class="">
+           <h3 class="text-xl font-bold mb-2">Year</h3>
+            <p class="text-zinc-400">2024 / 2. Semester in Uni</p>
+          </div>
+          <div>
+            
+          </div>
+        </div>
+
+        <div class="h-full flex relative items-center justify-center text-center object-contain pb-[10vh] ">
+          <!-- Page Flipper -->
+           <div id="pdfContainer" class=" w-[50vw] h-[80vh] flex flex-col gap-8 items-center object-contain"></div>
+        </div>
+        <div class=""></div>
+      </section>
+    </section>
+    
+
+  <section id="about" class="section fade-section min-h-screen relative hidden flex flex-col items-center justify-center px-6 text-center max-w-3xl mx-auto">
+  <!-- Image in top-left corner -->
+ <img src="/Assets/aboutPicture.jpg" alt="About Me"
+  class="absolute top-0 right-0 w-[50vw] max-w-[500px] h-[90vh] object-cover object-left rounded-b-3xl z-10 fade-in"  style="animation-delay: 0.4s;"/>
+
+  <!-- Content -->
+  <h2 class="text-4xl md:text-5xl bebas fade-in mb-6 z-20">About Me</h2>
+  <p class="text-zinc-200 fade-in z-20 " style="animation-delay: 0.2s;">
+    Hi, I'm a Media & Interaction Design student with a passion for crafting digital experiences that are both functional and visually engaging. With a strong design background and a love for coding, I enjoy working on frontend development, motion design, and user experience.
+    Beyond the screen, I love getting hands-on with arts & crafts, creating things with my hands is just as fulfilling to me as designing on a computer.
+  </p>
+</section>
+
+
+
+
+    <section id="contact" class="section fade-section min-h-screen hidden flex flex-col items-center justify-center text-center px-6">
+      <h2 class="text-4xl md:text-6xl bebas fade-in mb-4">Let's Connect</h2>
+      <p class="text-md md:text-xl text-zinc-300 fade-in mb-4" style="animation-delay: 0.2s;">
+        Reach me at <a href="mailto:jeremy@example.com" class="text-orange-600 hover:underline ">shoobridge.je@gmail.com</a>
+      </p>
+      <p class="text-zinc-500 text-md fade-in" style="animation-delay: 0.4s;">© 2025 Jeremy Shoobridge</p>
+    </section>
+
+  </main>
+
+  <!-- JS Logic -->
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const sections = document.querySelectorAll('.section');
+
+    let isMenuOpen = false;
+    var activePage = '';
+
+    menuToggle.addEventListener('click', () => {
+      isMenuOpen = !isMenuOpen;
+      toggleMenu();
+    });
+
+function toggleMenu() {
+  const menuItems = document.querySelectorAll('#menuOverlay a');
+
+  if (isMenuOpen) {
+    menuOverlay.classList.remove('opacity-0', 'pointer-events-none');
+    menuOverlay.classList.add('opacity-100', 'pointer-events-auto');
+
+    // Reset all menu items to default color
+    menuItems.forEach(item => {
+      item.classList.remove('text-stone-950');
+      item.classList.add('text-stone-200');
+    });
+
+    // Highlight active menu item
+    if (activePage) {
+      const activeMenuItem = document.getElementById(`menu-${activePage}`);
+      if (activeMenuItem) {
+        activeMenuItem.classList.add('text-orange-600');
+        activeMenuItem.classList.remove('text-stone-200');
+      }
+    }
+  } else {
+    menuOverlay.classList.remove('opacity-100', 'pointer-events-auto');
+    menuOverlay.classList.add('opacity-0', 'pointer-events-none');
+
+    // Optional: reset menu items when closing
+    menuItems.forEach(item => {
+      item.classList.remove('text-orange-600');
+      item.classList.add('text-stone-200');
+    });
+  }
+}
+
+   
+
+    function navigateTo(id) {
+      sections.forEach(section => {
+        section.style.display = 'none';
+      });
+
+      const target = document.getElementById(id);
+      target.style.display = 'flex';
+
+      target.classList.remove('fade-section');
+      void target.offsetWidth;
+      target.classList.add('fade-section');
+
+      activePage = id;
+      console.log(id);
+      moveBlobs(id);
+
+      isMenuOpen = false;
+      toggleMenu();
+    }
+
+    menuToggle.addEventListener('mouseenter', () => {
+      menuToggle.classList.add('rotate-[360deg]');
+    });
+
+    menuToggle.addEventListener('mouseleave', () => {
+        menuToggle.classList.remove('rotate-[360deg]');
+    });
+
+    var mouseCircle = document.querySelector('#mouseCircle');
+    var page = document.querySelector('#page');
+    
+    page.onmousemove = (event) => {
+        var x = (event.clientX - mouseCircle.offsetWidth / 2) * 100 / window.innerWidth + "%";
+        var y = (event.clientY - mouseCircle.offsetHeight / 2) * 100 / window.innerHeight + "%";
+        mouseCircle.style.left = x;
+        mouseCircle.style.top = y;
+    }
+
+    document.querySelectorAll('.hoverEffect').forEach(element => {
+      element.addEventListener('mouseenter', () => {
+          mouseCircle.classList.remove('scale-100', 'border-2', 'border-stone-200');
+          mouseCircle.classList.add('scale-[0.35]', 'border-8', 'border-stone-950');
+      });
+
+      element.addEventListener('mouseleave', () => {
+          mouseCircle.classList.remove('scale-[0.35]', 'border-8', 'border-stone-950');
+          mouseCircle.classList.add('scale-100', 'border-2', 'border-stone-200');
+      });
+    });
+
+    function setPreview(url) {
+      const preview = document.getElementById('projectPreview');
+      preview.style.opacity = 0;
+      setTimeout(() => {
+        preview.src = url;
+        preview.style.opacity = 0.7;
+      }, 150);
+    }
+
+  const pdfContainer = document.getElementById('pdfContainer');
+
+  pdfjsLib.getDocument('/assets/posterDesign03.pdf').promise.then(pdf => {
+    const totalPages = pdf.numPages;
+
+    for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
+      pdf.getPage(pageNum).then(page => {
+        const scale = 1;
+        const viewport = page.getViewport({ scale: 0.8 * scale });
+
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = viewport.width * scale;
+        canvas.height = viewport.height * scale;
+        canvas.className = 'rounded-xl shadow-xl';
+
+        pdfContainer.appendChild(canvas);
+
+        page.render({ canvasContext: ctx, viewport });
+      });
+    }
+  });
+
+
+
+
+
+   function moveBlobs(section) {
+    const blob1 = document.getElementById('blob1');
+    const blob2 = document.getElementById('blob2');
+    const blob3 = document.getElementById('blob3');
+
+  switch (section) {
+    case 'home':
+      blob1.style.top = '5vh';
+      blob1.style.left = '5vw';
+      blob1.style.width = '40vw';
+      blob1.style.height = '40vw';
+
+      blob2.style.bottom = '5vh';
+      blob2.style.right = '5vw';
+      blob2.style.width = '25vw';
+      blob2.style.height = '25vw';
+
+      blob3.style.top = '30vh';
+      blob3.style.left = '42vw';
+      blob3.style.width = '30vw';
+      blob3.style.height = '30vw';
+      break;
+
+    case 'projects':
+      blob1.style.top = '10vh';
+      blob1.style.left = '55vw';
+      blob1.style.width = '30vw';
+      blob1.style.height = '30vw';
+
+      blob2.style.bottom = '15vh';
+      blob2.style.right = '15vw';
+      blob2.style.width = '35vw';
+      blob2.style.height = '35vw';
+
+      blob3.style.top = '20vh';
+      blob3.style.left = '10vw';
+      blob3.style.width = '20vw';
+      blob3.style.height = '20vw';
+      break;
+
+    case 'about':
+      blob1.style.top = '2vh';
+      blob1.style.left = '60vw';
+      blob1.style.width = '20vw';
+      blob1.style.height = '20vw';
+
+      blob2.style.bottom = '10vh';
+      blob2.style.right = '5vw';
+      blob2.style.width = '35vw';
+      blob2.style.height = '35vw';
+
+      blob3.style.top = '40vh';
+      blob3.style.left = '25vw';
+      blob3.style.width = '30vw';
+      blob3.style.height = '30vw';
+      break;
+
+    case 'contact':
+      blob1.style.top = '15vh';
+      blob1.style.left = '10vw';
+      blob1.style.width = '35vw';
+      blob1.style.height = '35vw';
+
+      blob2.style.bottom = '5vh';
+      blob2.style.right = '20vw';
+      blob2.style.width = '25vw';
+      blob2.style.height = '25vw';
+
+      blob3.style.top = '50vh';
+      blob3.style.left = '60vw';
+      blob3.style.width = '20vw';
+      blob3.style.height = '20vw';
+      break;
+  }
+}
+
+navigateTo('home');
+  </script>
+
+</body>
+</html>
