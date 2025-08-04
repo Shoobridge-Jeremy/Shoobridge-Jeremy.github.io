@@ -27,7 +27,7 @@ form.addEventListener('submit', async (e) => {
     }
 
     const data = await res.json();
-    responseBox.value = data.reply;
+    typeWriterEffect(responseBox, data.reply);
   } catch (err) {
     console.error(err);
     responseBox.value = 'Error: Unable to reach server.';
@@ -42,6 +42,7 @@ Do this in a
     dont use a lot of complicated words, 
     keep it short and simple,
     and dont give to much information 
+    Keep it under 60 words
 You will now be given Information on Jeremy and a question to answer.
 `;
 
