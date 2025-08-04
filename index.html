@@ -157,20 +157,33 @@
       <p class="text-md md:text-xl text-zinc-300 fade-in mb-4" style="animation-delay: 0.2s;">Media & Interaction Design Student</p>
       <p class="text-zinc-500 text-md fade-in" style="animation-delay: 0.4s;">Osnabrueck, Germany</p>
       
-    <div class="w-[500px] pt-[100px]">
-					 <form id="chat-form">
-						<label for="mytext" class="text-start"><p class="">Do you have any questions about Jeremy?</p></label>
-						<input type="text" id="mytext" class=" bg-transparent p-2 mt-4 text-start w-full border border-white rounded-full" required>
-						<button type="submit" class="justify-center border border-white px-3 mt-3 py-1 mr-2 rounded-full hover:bg-white hover:border-black hover:text-black">Submit</button>
-					</form>
-			
-			
-			
-				<div class=" h-1/4 font-montserrat row-start-2 row-span-1 text-start m-1 w-full">
-					<p>Answer:</p>
-					<textarea id="response" class="w-full h-full border p-2 border-white bg-transparent text-white rounded-xl" readonly></textarea>
-				</div>
+      <div class="w-[80%] max-w-3xl  mx-auto pt-24 px-4">
+      <form id="chat-form" class="relative">
+        <div class="flex items-center rounded-full border border-zinc-300 overflow-hidden bg-transparent">
+          <input
+            type="text"
+            id="mytext"
+            class="flex-grow px-4 py-2 bg-transparent text-zinc-300 focus:outline-none placeholder:text-gray-300 hoverEffect"
+            placeholder="Ask me anything about Jeremy..."
+            required
+          />
+          <button
+            type="submit"
+            class="px-4 py-2 text-zinc-300 hover:bg-zinc-300 hover:text-black transition duration-200 hoverEffect">
+            Submit
+          </button>
         </div>
+      </form>
+
+      <div class="mt-8">
+        <textarea
+          id="response"
+          class="w-full h-64 p-4 bg-transparent text-white rounded-xl resize-none "
+          readonly
+        ></textarea>
+      </div>
+</div>
+
     </section>
 
     <section id="projects" class="section fade-section min-h-screen hidden flex items-center justify-center px-6 text-center fade-in">
@@ -340,7 +353,19 @@ function toggleMenu() {
   }
 }
 
-   
+   function typeWriterEffect(element, text, speed = 30) {
+  element.value = "";
+  let i = 0;
+  const interval = setInterval(() => {
+    if (i < text.length) {
+      element.value += text.charAt(i);
+      element.scrollTop = element.scrollHeight; // keeps text scrolled down
+      i++;
+    } else {
+      clearInterval(interval);
+    }
+  }, speed);
+}
 
     function navigateTo(id) {
       sections.forEach(section => {
