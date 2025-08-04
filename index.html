@@ -388,7 +388,7 @@ function toggleMenu() {
 
   const pdfContainer = document.getElementById('pdfContainer');
 
-  pdfjsLib.getDocument('/Assets/posterDesign03.pdf').promise.then(pdf => {
+  pdfjsLib.getDocument('/Assets/PosterDesign03.pdf').promise.then(pdf => {
     const totalPages = pdf.numPages;
 
     for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
@@ -494,4 +494,5 @@ navigateTo('home');
 
 </body>
 </html>
+
 
