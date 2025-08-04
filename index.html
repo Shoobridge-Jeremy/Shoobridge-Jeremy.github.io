@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jeremy Shoobridge Portfolio</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
+  
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Bebas+Neue&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
@@ -94,7 +95,7 @@
   </div>
 
     <!-- Mouse Circle -->
-   <div id="mouseCircle" class="transition absolute duration-[0.5s] scale-100 z-[50] w-12 h-12 border-2 border-white rounded-full pointer-events-none"></div>
+   <div id="mouseCircle" class="hidden md:block transition absolute duration-[0.5s] scale-100 z-[50] w-12 h-12 border-2 border-white rounded-full pointer-events-none"></div>
 
   <!-- Menu Button -->
   <button id="menuToggle" class="fixed top-6 right-6  w-[42px] h-[42px] text-white text-3xl z-50 transition-transform hover:scale-130 duration-500 hoverEffect">
@@ -184,7 +185,7 @@
             </div>
           </div>
 
-          <div onclick="navigateTo('projects')" style="animation-delay: 0.6s;" class=" fade-in content-center min-h-[10vh] group cursor-pointer bg-zinc-900 p-6 rounded-xl transition hoverEffect relative overflow-hidden border-2 hover:border-zinc-700 border-zinc-700 duration-800" onmouseenter="setPreview('assets/askABallPreview.jpg')">
+          <div onclick="navigateTo('projects')" style="animation-delay: 0.6s;" class=" fade-in content-center min-h-[10vh] group cursor-pointer bg-zinc-900 p-6 rounded-xl transition hoverEffect relative overflow-hidden border-2 hover:border-zinc-700 border-zinc-700 duration-800" onmouseenter="setPreview('/Assets/askABallPreview.jpg')">
             <div class="flex items-center gap-3 transition-transform duration-300 group-hover:translate-x-4">
               <div>
                 <h3 class="text-2xl font-bold mb-1 text-zinc-400">AskABall</h3>
@@ -193,7 +194,7 @@
             </div>
           </div>
 
-          <div onclick="navigateTo('projects')" style="animation-delay: 0.6s;" class="fade-in content-center min-h-[10vh] group cursor-pointer bg-zinc-900 p-6 rounded-xl transition hoverEffect relative overflow-hidden border-2 hover:border-zinc-700 border-zinc-700 duration-800" onmouseenter="setPreview('assets/garnGoghPreview.jpg')">
+          <div onclick="navigateTo('projects')" style="animation-delay: 0.6s;" class="fade-in content-center min-h-[10vh] group cursor-pointer bg-zinc-900 p-6 rounded-xl transition hoverEffect relative overflow-hidden border-2 hover:border-zinc-700 border-zinc-700 duration-800" onmouseenter="setPreview('/Assets/garnGoghPreview.jpg')">
             <div class="flex items-center gap-3 transition-transform duration-300 group-hover:translate-x-4">
               <div>
                 <h3 class="text-2xl font-bold mb-1 text-zinc-400">GarnGogh</h3>
@@ -387,7 +388,7 @@ function toggleMenu() {
 
   const pdfContainer = document.getElementById('pdfContainer');
 
-  pdfjsLib.getDocument('/assets/posterDesign03.pdf').promise.then(pdf => {
+  pdfjsLib.getDocument('/Assets/posterDesign03.pdf').promise.then(pdf => {
     const totalPages = pdf.numPages;
 
     for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
@@ -493,3 +494,4 @@ navigateTo('home');
 
 </body>
 </html>
+
