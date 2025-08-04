@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jeremy Shoobridge Portfolio</title>
+  <title>Shoobridge-Jeremy</title>
   <script src="https://cdn.tailwindcss.com"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
-  
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Bebas+Neue&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
@@ -94,8 +93,8 @@
     <div id="blob3" class="absolute w-[200px] h-[200px] border-8 border-gray-200 opacity-20 rounded-full transition-all duration-[1000ms] ease-in-out z-[-10]"></div>
   </div>
 
-    <!-- Mouse Circle -->
-   <div id="mouseCircle" class="hidden md:block transition absolute duration-[0.5s] scale-100 z-[50] w-12 h-12 border-2 border-white rounded-full pointer-events-none"></div>
+  <!-- Mouse Circle -->
+  <div id="mouseCircle" class="hidden md:block transition absolute duration-[0.5s] scale-100 z-[50] w-12 h-12 border-2 border-white rounded-full pointer-events-none"></div>
 
   <!-- Menu Button -->
   <button id="menuToggle" class="fixed top-6 right-6  w-[42px] h-[42px] text-white text-3xl z-50 transition-transform hover:scale-130 duration-500 hoverEffect">
@@ -103,48 +102,45 @@
   </button>
 
   <!-- Fullscreen Menu Overlay -->
-<div id="menuOverlay" class="fixed inset-0 bg-zinc-950/90 backdrop-blur-md flex flex-col items-center justify-center text-4xl z-40 opacity-0 pointer-events-none transition-all duration-500">
-  
-  <a onclick="navigateTo('home')" id="menu-home" class="hoverEffect group flex my-[10px] text-stone-200 hover:my-[40px] hover:scale-[125%] transition-all duration-500 ease-in-out transform">
-    <p class="text-lg sm:text-xl md:text-xl montserrat mr-2">01</p>
-    <h1 class="relative uppercase text-5xl sm:text-6xl md:text-7xl lg:text-8xl bebas
-      after:content-[''] after:absolute after:left-0 after:-bottom-2 after:h-[2px] after:w-0 after:bg-white
-      group-hover:after:w-full after:transition-all after:duration-500">
-      Home
-    </h1>
-  </a>
+  <div id="menuOverlay" class="fixed inset-0 bg-zinc-950/90 backdrop-blur-md flex flex-col items-center justify-center text-4xl z-40 opacity-0 pointer-events-none transition-all duration-500">
 
-  <a onclick="navigateTo('projects')" id="menu-projects" class="hoverEffect group flex my-[10px] text-stone-200 hover:my-[40px] hover:scale-[125%] transition-all duration-500 ease-in-out transform">
-    <p class="text-lg sm:text-xl md:text-xl montserrat mr-2 ">02</p>
-    <h1 class=" relative uppercase text-5xl sm:text-6xl md:text-7xl lg:text-8xl bebas
-      after:content-[''] after:absolute after:left-0 after:-bottom-2 after:h-[2px] after:w-0 after:bg-white
-      group-hover:after:w-full after:transition-all after:duration-500">
-      Projects
-    </h1>
-  </a>
+    <a onclick="navigateTo('home')" id="menu-home" class="hoverEffect group flex my-[10px] text-stone-200 hover:my-[40px] hover:scale-[125%] transition-all duration-500 ease-in-out transform">
+      <p class="text-lg sm:text-xl md:text-xl montserrat mr-2">01</p>
+      <h1 class="relative uppercase text-5xl sm:text-6xl md:text-7xl lg:text-8xl bebas
+        after:content-[''] after:absolute after:left-0 after:-bottom-2 after:h-[2px] after:w-0 after:bg-white
+        group-hover:after:w-full after:transition-all after:duration-500">
+        Home
+      </h1>
+    </a>
 
-  <a onclick="navigateTo('about')" id="menu-about" class="hoverEffect group flex my-[10px] text-stone-200 hover:my-[40px] hover:scale-[125%] transition-all duration-500 ease-in-out transform">
-    <p class="text-lg sm:text-xl md:text-xl montserrat mr-2">03</p>
-    <h1 class="relative uppercase text-5xl sm:text-6xl md:text-7xl lg:text-8xl bebas
-      after:content-[''] after:absolute after:left-0 after:-bottom-2 after:h-[2px] after:w-0 after:bg-white
-      group-hover:after:w-full after:transition-all after:duration-500">
-      About
-    </h1>
-  </a>
+    <a onclick="navigateTo('projects')" id="menu-projects" class="hoverEffect group flex my-[10px] text-stone-200 hover:my-[40px] hover:scale-[125%] transition-all duration-500 ease-in-out transform">
+      <p class="text-lg sm:text-xl md:text-xl montserrat mr-2 ">02</p>
+      <h1 class=" relative uppercase text-5xl sm:text-6xl md:text-7xl lg:text-8xl bebas
+        after:content-[''] after:absolute after:left-0 after:-bottom-2 after:h-[2px] after:w-0 after:bg-white
+        group-hover:after:w-full after:transition-all after:duration-500">
+        Projects
+      </h1>
+    </a>
 
-  <a onclick="navigateTo('contact')" id="menu-contact" class="hoverEffect group flex my-[10px] text-stone-200 hover:my-[40px] hover:scale-[125%] transition-all duration-500 ease-in-out transform">
-    <p class="text-lg sm:text-xl md:text-xl montserrat mr-2">04</p>
-    <h1 class="relative uppercase text-5xl sm:text-6xl md:text-7xl lg:text-8xl bebas
-      after:content-[''] after:absolute after:left-0 after:-bottom-2 after:h-[2px] after:w-0 after:bg-white
-      group-hover:after:w-full after:transition-all after:duration-500">
-      Contacts
-    </h1>
-  </a>
+    <a onclick="navigateTo('about')" id="menu-about" class="hoverEffect group flex my-[10px] text-stone-200 hover:my-[40px] hover:scale-[125%] transition-all duration-500 ease-in-out transform">
+      <p class="text-lg sm:text-xl md:text-xl montserrat mr-2">03</p>
+      <h1 class="relative uppercase text-5xl sm:text-6xl md:text-7xl lg:text-8xl bebas
+        after:content-[''] after:absolute after:left-0 after:-bottom-2 after:h-[2px] after:w-0 after:bg-white
+        group-hover:after:w-full after:transition-all after:duration-500">
+        About
+      </h1>
+    </a>
 
-</div>
+    <a onclick="navigateTo('contact')" id="menu-contact" class="hoverEffect group flex my-[10px] text-stone-200 hover:my-[40px] hover:scale-[125%] transition-all duration-500 ease-in-out transform">
+      <p class="text-lg sm:text-xl md:text-xl montserrat mr-2">04</p>
+      <h1 class="relative uppercase text-5xl sm:text-6xl md:text-7xl lg:text-8xl bebas
+        after:content-[''] after:absolute after:left-0 after:-bottom-2 after:h-[2px] after:w-0 after:bg-white
+        group-hover:after:w-full after:transition-all after:duration-500">
+        Contacts
+      </h1>
+    </a>
 
-
-
+  </div>
 
 
   <!-- Main Content Wrapper -->
@@ -203,9 +199,7 @@
             </div>
           </div>
 
-
         </div>
-
     </section>
 
     
@@ -251,22 +245,24 @@
       </section>
     </section>
     
+    <!--About-->
+    <section id="about" class="section fade-section min-h-screen relative hidden flex flex-col items-center justify-center px-6 text-center max-w-3xl mx-auto">
+      <!-- Image in top-left corner -->
+      <img src="/Assets/aboutPicture.jpg" alt="About Me" class="absolute top-0 right-0 w-[50vw] max-w-[500px] h-[90vh] object-cover object-left rounded-b-3xl z-10 fade-in"  style="animation-delay: 0.4s;"/>
 
-  <section id="about" class="section fade-section min-h-screen relative hidden flex flex-col items-center justify-center px-6 text-center max-w-3xl mx-auto">
-  <!-- Image in top-left corner -->
- <img src="/Assets/aboutPicture.jpg" alt="About Me"
-  class="absolute top-0 right-0 w-[50vw] max-w-[500px] h-[90vh] object-cover object-left rounded-b-3xl z-10 fade-in"  style="animation-delay: 0.4s;"/>
-
-  <!-- Content -->
-  <h2 class="text-4xl md:text-5xl bebas fade-in mb-6 z-20">About Me</h2>
-  <p class="text-zinc-200 fade-in z-20 " style="animation-delay: 0.2s;">
-    Hi, I'm a Media & Interaction Design student with a passion for crafting digital experiences that are both functional and visually engaging. With a strong design background and a love for coding, I enjoy working on frontend development, motion design, and user experience.
-    Beyond the screen, I love getting hands-on with arts & crafts, creating things with my hands is just as fulfilling to me as designing on a computer.
-  </p>
-</section>
-
-
-
+      <!-- Content -->
+      <div class=" flex w-full pb-6 z-20">
+				<h2 class="text-5xl font-bold text-left uppercase w-full  fade-in">About Me</h2>
+				<a href="/Assets/ShoobridgeJeremy_Lebenslauf.pdf" class="m-auto cursor-none hoverEffect p-2 rounded-3xl border-2 border-transparent  hover:border-orange-600  fade-in transition duration-500 hover:text-orange-600" download>
+					<i class='bx bx-download bx-md '></i>
+				</a>
+			</div>
+      
+      <p class="text-zinc-200 fade-in z-20 text-left" style="animation-delay: 0.2s;">
+        Hi, I'm a Media & Interaction Design student with a passion for crafting digital experiences that are both functional and visually engaging. With a strong design background and a love for coding, I enjoy working on frontend development, motion design, and user experience.
+        Beyond the screen, I love getting hands-on with arts & crafts, creating things with my hands is just as fulfilling to me as designing on a computer.
+      </p>
+    </section>
 
     <section id="contact" class="section fade-section min-h-screen hidden flex flex-col items-center justify-center text-center px-6">
       <h2 class="text-4xl md:text-6xl bebas fade-in mb-4">Let's Connect</h2>
@@ -291,6 +287,7 @@
       isMenuOpen = !isMenuOpen;
       toggleMenu();
     });
+
 
 function toggleMenu() {
   const menuItems = document.querySelectorAll('#menuOverlay a');
@@ -494,5 +491,3 @@ navigateTo('home');
 
 </body>
 </html>
-
-
