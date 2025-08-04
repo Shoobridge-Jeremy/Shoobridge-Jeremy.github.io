@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shoobridge-Jeremy</title>
   <script src="https://cdn.tailwindcss.com"></script>
+ 
  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Bebas+Neue&display=swap" rel="stylesheet">
@@ -155,6 +156,21 @@
       
       <p class="text-md md:text-xl text-zinc-300 fade-in mb-4" style="animation-delay: 0.2s;">Media & Interaction Design Student</p>
       <p class="text-zinc-500 text-md fade-in" style="animation-delay: 0.4s;">Osnabrueck, Germany</p>
+      
+    <div class="w-[500px] pt-[100px]">
+					 <form id="chat-form">
+						<label for="mytext" class="text-start"><p class="">Do you have any questions about Jeremy?</p></label>
+						<input type="text" id="mytext" class=" bg-transparent p-2 mt-4 text-start w-full border border-white rounded-full" required>
+						<button type="submit" class="justify-center border border-white px-3 mt-3 py-1 mr-2 rounded-full hover:bg-white hover:border-black hover:text-black">Submit</button>
+					</form>
+			
+			
+			
+				<div class=" h-1/4 font-montserrat row-start-2 row-span-1 text-start m-1 w-full">
+					<p>Answer:</p>
+					<textarea id="response" class="w-full h-full border p-2 border-white bg-transparent text-white rounded-xl" readonly></textarea>
+				</div>
+        </div>
     </section>
 
     <section id="projects" class="section fade-section min-h-screen hidden flex items-center justify-center px-6 text-center fade-in">
@@ -253,7 +269,7 @@
       <!-- Content -->
       <div class=" flex w-full pb-6 z-20">
 				<h2 class="text-5xl font-bold text-left uppercase w-full  fade-in">About Me</h2>
-				<a href="/Assets/ShoobridgeJeremy_Lebenslauf.pdf" class="m-auto cursor-none hoverEffect p-2 rounded-3xl border-2 border-transparent  hover:border-orange-600  fade-in transition duration-500 hover:text-orange-600" download>
+				<a href="/Assets/ShoobridgeJeremy_Lebenslauf.pdf" class=" fade-in m-auto cursor-none hoverEffect p-2 rounded-3xl border-2 border-transparent  hover:border-orange-600  fade-in transition duration-500 hover:text-orange-600" download>
 					<i class='bx bx-download bx-md '></i>
 				</a>
 			</div>
@@ -275,6 +291,8 @@
   </main>
 
   <!-- JS Logic -->
+  <script src="/Assets/chatBot.js"></script>
+
   <script>
     const menuToggle = document.getElementById('menuToggle');
     const menuOverlay = document.getElementById('menuOverlay');
