@@ -149,41 +149,44 @@
 
     <!-- Section Template -->
     <section id="home" class="section fade-section min-h-screen flex flex-col items-center justify-center text-center px-6">
-      <div class="flex">
-      <h1 class="text-4xl md:text-6xl bebas fade-in mb-4">Hey, I'm </h1>
-       <a onclick="navigateTo('about')" class="hoverEffect text-orange-600 hover:underline text-4xl md:text-6xl bebas fade-in mb-4 ml-[1rem]">Jeremy Shoobridge</a>
-       </div>
+      <div class="flex flex-col h-50%  grid grid-rows-2 gap-4 w-[100%] justify-center ">
       
-      <p class="text-md md:text-xl text-zinc-300 fade-in mb-4" style="animation-delay: 0.2s;">Media & Interaction Design Student</p>
-      <p class="text-zinc-500 text-md fade-in" style="animation-delay: 0.4s;">Osnabrueck, Germany</p>
-      
-      <div class="w-[80%] max-w-3xl  mx-auto pt-24 px-4">
-      <form id="chat-form" class="relative">
-        <div class="flex items-center rounded-full border border-zinc-300 overflow-hidden bg-transparent">
-          <input
-            type="text"
-            id="mytext"
-            class="flex-grow px-4 py-2 bg-transparent text-zinc-300 focus:outline-none placeholder:text-gray-300 hoverEffect"
-            placeholder="Ask me anything about Jeremy..."
-            required
-          />
-          <button
-            type="submit"
-            class="px-4 py-2 text-zinc-300 hover:bg-zinc-300 hover:text-black transition duration-200 hoverEffect">
-            Submit
-          </button>
+        <div class=" row-start-2">
+          <div class="flex">
+          <h1 class="text-4xl md:text-6xl bebas fade-in mb-4">Hey, I'm </h1>
+          <a onclick="navigateTo('about')" class="hoverEffect text-orange-600 hover:underline text-4xl md:text-6xl bebas fade-in mb-4 ml-[1rem]">Jeremy Shoobridge</a>
+          </div>
+          
+          <p class="text-md md:text-xl text-zinc-300 fade-in mb-4" style="animation-delay: 0.2s;">Media & Interaction Design Student</p>
+          <p class="text-zinc-500 text-md fade-in" style="animation-delay: 0.4s;">Osnabrueck, Germany</p>
         </div>
-      </form>
+        <div class=" mx-auto pt-24 row-start-3 w-[100%]  justify-center">
+        <form id="chat-form" class="relative">
+          <div class="flex items-center rounded-full border border-zinc-300 overflow-hidden bg-transparent w-[100%] ">
+            <input
+              type="text"
+              id="mytext"
+              class="flex-grow px-4 py-2 bg-transparent text-zinc-300 focus:outline-none placeholder:text-zinc-500 hoverEffect"
+              placeholder="Ask me anything about Jeremy..."
+              required
+            />
+            <button
+              type="submit"
+              class="px-4 py-2 text-zinc-300 hover:bg-zinc-300  hover:text-zinc-800 transition duration-200 hoverEffect">
+              <i class='bx  bx-search bx-sm pt-1'  ></i> 
+            </button>
+          </div>
+        </form>
 
-      <div class="mt-8">
-        <textarea
-          id="response"
-          class="w-full h-64 p-4 bg-transparent text-white rounded-xl resize-none "
-          readonly
-        ></textarea>
+        <div class="mt-8">
+          <textarea
+            id="response"
+            class="w-full h-64 p-4 bg-transparent text-zinc-300 rounded-xl resize-none "
+            readonly
+          ></textarea>
+        </div>
       </div>
 </div>
-
     </section>
 
     <section id="projects" class="section fade-section min-h-screen hidden flex items-center justify-center px-6 text-center fade-in">
